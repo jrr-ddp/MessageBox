@@ -53,6 +53,7 @@ namespace MessageBox
 
         private void btnClose_Click(object sender, RoutedEventArgs e)
         {
+            ReturnString = "-1";
             Close();
         }
 

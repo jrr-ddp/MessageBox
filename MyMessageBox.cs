@@ -3,6 +3,8 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows;
+using System.Windows.Media.Effects;
 
 namespace MessageBox
 {
@@ -33,9 +35,24 @@ namespace MessageBox
 
         public static string showDialog(string Text, Buttons buttons)
         {
+            BlurEffect();
             MB_Window messageBox = new MB_Window(Text, buttons);
             messageBox.ShowDialog();
+            StopBlur();
             return messageBox.ReturnString;
+        }
+
+        static BlurEffect Blur = new BlurEffect();
+        public static void BlurEffect()
+        {
+            Blur.Radius = 20;
+            foreach (Window window in Application.Current.Windows)
+                window.Effect = Blur;
+        }
+
+        public static void StopBlur()
+        {
+            Blur.Radius = 0;
         }
     }
 }

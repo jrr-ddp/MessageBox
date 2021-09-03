@@ -20,7 +20,7 @@ namespace MessageBox
     /// </summary>
     public partial class SN_Window : Window
     {
-        public int Time = 8;
+        public int Time = 5;
 
         public SN_Window(string Text)
         {
