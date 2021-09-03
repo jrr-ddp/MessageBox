@@ -55,8 +55,13 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="CloseAll.cs" />
     <Compile Include="MB_Window.xaml.cs">
       <DependentUpon>MB_Window.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="ShortNotification.cs" />
+    <Compile Include="SN_Window.xaml.cs">
+      <DependentUpon>SN_Window.xaml</DependentUpon>
     </Compile>
     <Page Include="MainWindow.xaml">
       <Generator>MSBuild:Compile</Generator>
@@ -71,6 +76,10 @@
       <SubType>Code</SubType>
     </Compile>
     <Page Include="MB_Window.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="SN_Window.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

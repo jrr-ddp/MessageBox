@@ -20,9 +20,23 @@ namespace MessageBox
     /// </summary>
     public partial class MB_Window : Window
     {
-        public MB_Window()
+        public string ReturnString { get; set; }
+
+        public MB_Window(string Text, MyMessageBox.Buttons buttons)
         {
             InitializeComponent();
+            txtText.Text = Text;
+
+            switch (buttons)
+            {
+                case MyMessageBox.Buttons.Ok:
+                    btnOk.Visibility = Visibility.Visible;
+                    break;
+                case MyMessageBox.Buttons.Yes_No:
+                    btnYes.Visibility = Visibility.Visible;
+                    btnNo.Visibility = Visibility.Visible;
+                    break;
+            }
         }
 
         private void Gbar_MouseDown(object sender, MouseButtonEventArgs e)
@@ -55,6 +69,12 @@ namespace MessageBox
         private void Window_Loaded(object sender, RoutedEventArgs e)
         {
             Height = (txtText.LineCount *27) + Gbar.Height + 50;
+        }
+
+        private void btnReturnValue_Click(object sender, RoutedEventArgs e)
+        {
+            ReturnString = ((Button)sender).Uid.ToString();
+            Close();
         }
     }
 }
