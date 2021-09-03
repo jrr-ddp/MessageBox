@@ -5,15 +5,43 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:MessageBox"
         mc:Ignorable="d"
-        Title="Window_MB" Height="200" Width="400" AllowsTransparency="True" WindowStyle="None" Background="{x:Null}">
+        Title="Window_MB" Height="200" Width="400" MaxHeight="500" AllowsTransparency="True" WindowStyle="None" Background="{x:Null}" Closing="Window_Closing" 
+        Loaded="Window_Loaded" WindowStartupLocation="CenterScreen">
+
+    <Window.Triggers>
+        <EventTrigger RoutedEvent="FrameworkElement.Loaded">
+            <BeginStoryboard>
+                <Storyboard FillBehavior="HoldEnd" AutoReverse="False">
+                    <DoubleAnimation Storyboard.TargetProperty="Opacity" From="0" To="1" Duration="0:0:0.3"/>
+                </Storyboard>
+            </BeginStoryboard>
+        </EventTrigger>
+    </Window.Triggers>
+
     <Grid>
         <Grid x:Name="Gbody">
-            <Border Background="White" CornerRadius="20"/>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="*"/>
+                <RowDefinition Height="Auto"/>
+            </Grid.RowDefinitions>
+            <Border Background="White" CornerRadius="20" Grid.RowSpan="2"/>
+            <TextBox x:Name="txtText" TextWrapping="Wrap" Text="Text" Margin="10,50,0,0.2" FontSize="18" FontFamily="Comfortaa" 
+                     TextAlignment="Center" HorizontalAlignment="Center" Width="300" Background="{x:Null}" BorderBrush="{x:Null}" ScrollViewer.CanContentScroll="True"
+                     VerticalScrollBarVisibility="Auto" IsReadOnly="True"/>
+
+            <Button x:Name="btnYes" Content="Yes" Style="{StaticResource MyButton}" Background="#FF4F4646" Foreground="WhiteSmoke" 
+                    Click="btnClose_Click" Margin="60,10,240,5" Grid.Row="1"/>
+
+            <Button x:Name="btnNo" Content="No" Style="{StaticResource MyButton}" Background="#FF4F4646" Foreground="WhiteSmoke" HorizontalAlignment="Right" 
+                    Click="btnClose_Click" Margin="0,10,60,5" Grid.Row="1" Width="100"/>
+
+            <!--<Button x:Name="btnOk" Content="Ok" Style="{StaticResource MyButton}" 
+                HorizontalAlignment="Left" Margin="74,145,0,-145" VerticalAlignment="Top" Width="100" Background="#FF4F4646" Foreground="WhiteSmoke" Click="btnClose_Click"/>-->
         </Grid>
         <Grid Cursor="Hand" x:Name="Gbar" Height="40" VerticalAlignment="Top" MouseDown="Gbar_MouseDown">
-            <Border Background="White" CornerRadius="20"/>
+            <Border Background="#FFE0E0E0" CornerRadius="20 20 0 0"/>
             <Button x:Name="btnClose" Content="X" Style="{StaticResource MyCloseButton}" 
-                    HorizontalAlignment="Left" Margin="342,0,0,0" VerticalAlignment="Top" Width="58" Height="40" Background="#FFE74646"/>
+                    HorizontalAlignment="Left" Margin="342,0,0,0" VerticalAlignment="Top" Width="58" Height="40" Background="#FFE74646" Click="btnClose_Click"/>
         </Grid>
     </Grid>
 </Window>
